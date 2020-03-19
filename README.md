@@ -52,34 +52,48 @@ This recipe has no mandatory environment variables, and two mandatory parameters
 * You want to work on your workstation machine, in a folder of path `PATH_OF_FOLDER_I_CHOSE`
 * And you want to work on the code versioned in the git repo of SSH URI `URI_TO_GIT_REPO_I_CHOSE`
 
-Then : 
+Then :
 
 * install the iaac cycle [like explained here](#deploy-it)
-* execute :
+* And now, open a new `/bin/bash` Shell session : tpye `initi`, then double `tab`, and you'll see you have a new command available, `initializeIAAC`.
+* Usaually I use the `initializeIAAC` command, when I want to work on a git repo. Then, if URI of the git repo is `$URI_TO_GIT_REPO_I_CHOSE`, I will choose a folder where I will work on my machine, and execute :
 
 ```bash
 # -- OPS ENV
 export PATH_OF_FOLDER_I_CHOSE=~/ever-iaac-atom-w
-# -- IAAC ENV
-export URI_TO_GIT_REPO_I_CHOSE=git@gitlab.com:second-bureau/pegasus/ever-better-iaac.git
+# -- IAAC ENV when I work on the present repo
+export URI_TO_GIT_REPO_I_CHOSE=git@github.com:pegasus-io/ever-better-iaac.git
+
+
 export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa'
 export COMMIT_MESSAGE=""
-export COMMIT_MESSAGE="$COMMIT_MESSAGE Votre msg de commit"
-
-
+export COMMIT_MESSAGE="$COMMIT_MESSAGE Resuming work on [$URI_TO_GIT_REPO_I_CHOSE]"
+# If I want to make a release today ...
+export REALEASE_VERSION=0.0.2
 initializeIAAC $URI_TO_GIT_REPO_I_CHOSE $PATH_OF_FOLDER_I_CHOSE
+
+git flow init --defaults
+git push -u origin --all
+
+export FEATURE_ALIAS="git-flowing-the-iaac"
+git flow feature start $FEATURE_ALIAS
 
 atom .
 
-# git add --all && git commit -m "$COMMIT_MESSAGE" && git push -u origin master
+# git add --all && git commit -m "$COMMIT_MESSAGE" && git push -u origin HEAD
+
+# with signature # git flow feature finish -s $FEATURE_ALIAS && git push -u origin HEAD
+# without signature # git flow feature finish $FEATURE_ALIAS && git push -u origin HEAD
+
+
 ```
-* Once done, press the _UP arrow_ key `4` times on your keyboard : 
+* Once done, press the _UP arrow_ key `4` times on your keyboard :
   * To reset the commit message for your next commit : explanations todo **faire une vidéo**
-  * To reset the git ssh command : 
-  * To debug your ssh connection to a given git service provider (https://gitlab.com, https://github.com, etc...), set the `GIT_SSH_COMMAND` to : 
-    * `export GIT_SSH_COMMAND='ssh -Tvai /path/to/your/private/key'` for a verbose output 
-    * `export GIT_SSH_COMMAND='ssh -Tvvai /path/to/your/private/key'` for a very verbose output 
-    * `export GIT_SSH_COMMAND='ssh -Tvvvai /path/to/your/private/key'` for a very very verbose output 
+  * To reset the git ssh command :
+  * To debug your ssh connection to a given git service provider (https://gitlab.com, https://github.com, etc...), set the `GIT_SSH_COMMAND` to :
+    * `export GIT_SSH_COMMAND='ssh -Tvai /path/to/your/private/key'` for a verbose output
+    * `export GIT_SSH_COMMAND='ssh -Tvvai /path/to/your/private/key'` for a very verbose output
+    * `export GIT_SSH_COMMAND='ssh -Tvvvai /path/to/your/private/key'` for a very very verbose output
 
 # How it works
 
