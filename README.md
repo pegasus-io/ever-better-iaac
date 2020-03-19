@@ -65,30 +65,34 @@ export PATH_OF_FOLDER_I_CHOSE=~/ever-iaac-atom-w
 export URI_TO_GIT_REPO_I_CHOSE=git@github.com:pegasus-io/ever-better-iaac.git
 
 
-export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa'
-export COMMIT_MESSAGE=""
-export COMMIT_MESSAGE="$COMMIT_MESSAGE Resuming work on [$URI_TO_GIT_REPO_I_CHOSE]"
-# If I want to make a release today ...
-export REALEASE_VERSION=0.0.2
 initializeIAAC $URI_TO_GIT_REPO_I_CHOSE $PATH_OF_FOLDER_I_CHOSE
 
 git flow init --defaults
 git push -u origin --all
 
-export FEATURE_ALIAS="git-flowing-the-iaac"
-git flow feature start $FEATURE_ALIAS
 
 atom .
 
+export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa'
+# If I want to make a release today ...
+export REALEASE_VERSION=0.0.2
+
+export COMMIT_MESSAGE=""
+export COMMIT_MESSAGE="$COMMIT_MESSAGE Resuming work on [$URI_TO_GIT_REPO_I_CHOSE]"
+export FEATURE_ALIAS="git-flowing-the-iaac"
+git flow feature start $FEATURE_ALIAS
 # git add --all && git commit -m "$COMMIT_MESSAGE" && git push -u origin HEAD
 
-# with signature # git flow feature finish -s $FEATURE_ALIAS && git push -u origin HEAD
-# without signature # git flow feature finish $FEATURE_ALIAS && git push -u origin HEAD
+# git flow feature finish $FEATURE_ALIAS && git push -u origin HEAD
 
+# REALEASE START - git flow release start $FEATURE_ALIAS && git push -u origin HEAD
+# REALEASE FINISH - with signature # git flow release finish -s $FEATURE_ALIAS && git push -u origin HEAD
+# REALEASE FINISH - without signature # git flow release finish $FEATURE_ALIAS && git push -u origin HEAD
 
 ```
-* Once done, press the _UP arrow_ key `4` times on your keyboard :
-  * To reset the commit message for your next commit : explanations todo **faire une vidéo**
+* Once done, press the _UP arrow_ key `10` times on your keyboard :
+  * from now on, any command you need to execute, except you work in your Atom IDE, is among the `10` commands that you just browsed.
+  * To reset the commit message for your next commit : explanations todo **faire une vidéo asciinema**
   * To reset the git ssh command :
   * To debug your ssh connection to a given git service provider (https://gitlab.com, https://github.com, etc...), set the `GIT_SSH_COMMAND` to :
     * `export GIT_SSH_COMMAND='ssh -Tvai /path/to/your/private/key'` for a verbose output
