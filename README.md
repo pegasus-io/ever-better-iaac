@@ -315,12 +315,3 @@ jbl@poste-devops-typique:~/iss-atom-w$ echo "$?"
 jbl@poste-devops-typique:~/iss-atom-w$
 
 ```
-
-# ANNEX : _**Headwith**_ vs _**Headless**_ `OS` instances
-
-
-I push forward a new terminology, :
-
-What is a HEadwith OS instance ?
-
-A _Headwith_`OS`, that is, an OS that is not "headless", an OS with a Head, that is to say a _Human GUI other than shell_
