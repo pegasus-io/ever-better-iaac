@@ -11,31 +11,15 @@ My continuously improving (automation of) my IAAC cycle
 ```bash
 export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa'
 
-export URI_DE_CE_REPO=git@gitlab.com:second-bureau/pegasus/ever-better-iaac.git
+export URI_DE_CE_REPO=git@github.com:pegasus-io/ever-better-iaac.git
+export URI_DE_CE_REPO=https://github.com/pegasus-io/ever-better-iaac.git
+export OPS_HOME=$(mktemp -d -t iaac.provisioning-XXXXXXXXXX)
 
-
-
-if [ -d ~/iss-deployment ]; then
-  cd ~/iss-deployment
-  docker-compose down --rmi all
-  cd
-  docker system prune -f
-  rm -fr ~/iss-deployment
-fi;
-
-mkdir -p ~/iss-deployment
-cd ~/iss-deployment
-
-
-
-git clone "$URI_DE_CE_REPO" .
-export BUMBLEBEE_HOME_INSIDE_CONTAINER=/beeio
-export BUMBLEBEE_WORKSPACE_INSIDE_CONTAINER=/beeio/workspace
-
+git clone "$URI_DE_CE_REPO" $OPS_HOME
+cd $OPS_HOME
 
 chmod +x ./operations.sh
-
-
+./operations.sh
 ```
 
 #### _**Parameters**_
